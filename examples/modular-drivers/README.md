@@ -146,3 +146,10 @@ section of the project's `Cargo.toml` file, as noted in the
 
 Please see the [moisture sensor](src/moisture_sensor.rs) and [water pump](src/water_pump.rs) for
 more examples of modular Micro-RDK drivers.
+
+https://github.com/allisonschiang/micro-rdk/blob/c0906e899601415d34061e64575d01cd9d416030/examples/modular-drivers/src/free_heap_sensor.rs#L23C1-L27C2
+
+
+/blob/c0906e899601415d34061e64575d01cd9d416030/examples/modular-drivers/src/free_heap_sensor.rs#L23C1-L27C2
+
+/c0906e899601415d34061e64575d01cd9d416030/examples/modular-drivers/src/free_heap_sensor.rs#L23C1-L27C2
