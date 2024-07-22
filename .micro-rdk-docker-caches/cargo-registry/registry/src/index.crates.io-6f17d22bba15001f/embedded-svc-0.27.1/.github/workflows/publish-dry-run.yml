@@ -1,0 +1,22 @@
+name: PublishDryRun
+
+on:
+  workflow_dispatch
+
+env:
+  rust_toolchain: stable
+
+jobs:
+  publishdryrun:
+    name: Publish Dry Run
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup | Checkout
+        uses: actions/checkout@v3
+      - name: Setup | Rust
+        uses: dtolnay/rust-toolchain@v1
+        with:
+          toolchain: ${{ env.rust_toolchain }}
+          components: rust-src
+      - name: Build | Publish Dry Run
+        run: cargo publish --dry-run

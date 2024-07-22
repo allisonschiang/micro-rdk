@@ -1,0 +1,20 @@
+[package]
+name = "async-std-openssl"
+version = "0.6.3"
+authors = ["victorcwai <victorcwai@gmail.com>"]
+license = "MIT/Apache-2.0"
+edition = "2018"
+repository = "https://github.com/victorcwai/async-std-openssl"
+description = """
+An implementation of SSL streams for async-std backed by OpenSSL. Based on sfackler/tokio-openssl.
+"""
+
+[dependencies]
+futures-util = { version = "0.3", default-features = false }
+openssl = "0.10"
+openssl-sys = "0.9"
+async-std = "1.9"
+async-dup = "1.2"
+
+[dev-dependencies]
+async-std = { version = "1.9", features = ["attributes"] }

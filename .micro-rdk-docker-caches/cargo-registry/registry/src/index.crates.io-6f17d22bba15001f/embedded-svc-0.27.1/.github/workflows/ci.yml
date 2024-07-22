@@ -1,0 +1,42 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+  schedule:
+    - cron: '50 4 * * *'
+  workflow_dispatch:
+
+env:
+  rust_toolchain: nightly
+
+jobs:
+  compile:
+    name: Compile
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup | Checkout
+        uses: actions/checkout@v3
+      - name: Setup | Rust
+        uses: dtolnay/rust-toolchain@v1
+        with:
+          toolchain: ${{ env.rust_toolchain }}
+          components: rustfmt, clippy, rust-src
+      - name: Build | Fmt Check
+        run: cargo fmt -- --check
+      - name: Build | Clippy
+        run: cargo clippy --features experimental -- -Dwarnings
+      - name: Build | Experimental
+        run: cargo build --features experimental
+      - name: Build | Compile / no_std, alloc
+        run: cargo build --no-default-features --features experimental,alloc,use_serde,use_strum,use_numenum,log
+      - name: Build | Compile / no_std
+        run: cargo build --no-default-features --features experimental,use_serde,use_strum,use_numenum,log
+      - name: Build | Compile / no_std, no serde
+        run: cargo build --no-default-features --features experimental,use_strum,use_numenum,log
+      - name: Build | Compile / defmt
+        run: cargo build --no-default-features --features std,experimental,use_serde,use_strum,use_numenum,defmt
+      - name: Build | Compile / defmt, no_std
+        run: cargo build --no-default-features --features experimental,use_serde,use_strum,use_numenum,defmt
